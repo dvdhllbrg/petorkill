@@ -77,9 +77,9 @@ Vue.component('controls', {
 	template: '#controls-template',
 	data: function() {
 		return {
-			message: 'What do you do?',
 			state: 'guessing',
-			score: 0
+			score: 0,
+			strikes: 0
 		}
 	},
 	methods: {
@@ -95,15 +95,19 @@ Vue.component('controls', {
 			} else if(animal.isPet && action == 'kill') {
 				Materialize.toast('You monster! How could you possibly kill a ' + animal.species + '?!', 2000);
 				$('#stamp').text('INCORRECT').removeClass('hide correct incorrect').addClass('incorrect');
-				this.state = 'gameover';
+				this.strikes++;
 			} else if(!animal.isPet && action == 'pet') {
 				Materialize.toast('Come on, just kill the ' + animal.species + ' already. What are you, some kind of vegan?', 2000);
 				$('#stamp').text('INCORRECT').removeClass('hide correct incorrect').addClass('incorrect');
-				this.state = 'gameover'; 
+				this.strikes++; 
 			} else if(!animal.isPet && action == 'kill') {
 				Materialize.toast('Looking forward to dinner, I\'m so glad we have ' + animal.species + 's so we don\'t have to eat something weird like plants!', 2000);
 				$('#stamp').text('CORRECT').removeClass('hide correct incorrect').addClass('correct');
 				this.score++;
+			}
+
+			if(this.strikes >= 3) {
+				this.state = 'gameover';
 			}
 
 			vm.$refs.animal.unPixelateImage();
@@ -115,6 +119,7 @@ Vue.component('controls', {
 		},
 		restartGame() {
 			this.score = 0;
+			this.strikes = 0;
 			this.newGameScreen();
 		}
 	}

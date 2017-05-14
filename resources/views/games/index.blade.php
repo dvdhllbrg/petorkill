@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="row" id="start-screen">
-    <p class="flow-text">Your task is simple. Before your eyes will be revealed information about an animal. You are to choose whether that animal should be petted or killed. If you choose correctly, you will receive a point. If you choose the wrong answer, however, you will lose the game.</p>
+    <p class="flow-text">Your task is simple. Before your eyes will be revealed information about an animal. You are to choose whether that animal should be petted or killed. If you choose the correct action, you will receive a point. If you choose the wrong action, i.e. choose to pet an animal that should be killed or vice versa, you will get a strike. You get three strikes, and the game is over.</p>
     <p class="flow-text">Are you ready?</p>
     <div class="center">
     	<a href="#" id="start-game-button" class="btn-large waves-effect waves-light cyan">Start the game</a>
@@ -38,8 +38,19 @@
 				</div>
 			</div>
 			<div class="col s12 m2 center-align">
-				<span class="score-text">Your score:</span>
-				<h1>@{{ score }}</h1>
+				<div class="row">
+					<div class="col s6">
+						<b>Score</b>
+						<h2>@{{ score }}</h2>
+					</div>
+						<div class="col s6">
+							<b>Status</b>
+							<h2 v-if="strikes == '0'">😃</h2>
+							<h2 v-else-if="strikes == '1'">😐</h2>
+							<h2 v-else-if="strikes == '2'">😓</h2>
+							<h2 v-else>😭</h2>
+						</div>
+				</div>
 			</div>
 		</div>
   </template>
