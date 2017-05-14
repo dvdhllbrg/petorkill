@@ -4,13 +4,16 @@ $(document).ready( () => {
 		$('#game-screen').removeClass('hide');
 		setCanvasSize();
 	});
+	if($(window).width() < 768) {
+		$('.card').removeClass('horizontal');
+	}
 });
 
 function setCanvasSize() {
-	let height = $('.card').height();
+	let height = $('.card-image').height();
 	if(height == 0) {
 		$('#game-screen').removeClass('hide');
-		height = $('.card').height();
+		height = $('.card-image').height();
 		$('#game-screen').addClass('hide');
 	}
 	$(canvas).height(height);
