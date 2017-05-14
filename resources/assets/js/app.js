@@ -92,19 +92,19 @@ Vue.component('controls', {
 			this.state = 'showing';
 
 			if(animal.isPet && action == 'pet') {
-				Materialize.toast('Hey there little fella! You\'re such a cute ' + animal.species + '!', 2000);
+				Materialize.toast('Hey there little fella! You\'re such a cute ' + animal.species + '!', 3000);
 				$('#stamp').text('CORRECT').removeClass('hide correct incorrect').addClass('correct');
 				this.score++;
 			} else if(animal.isPet && action == 'kill') {
-				Materialize.toast('You monster! How could you possibly kill a ' + animal.species + '?!', 2000);
+				Materialize.toast('You monster! How could you possibly kill a ' + animal.species + '?!', 3000);
 				$('#stamp').text('INCORRECT').removeClass('hide correct incorrect').addClass('incorrect');
 				this.strikes++;
 			} else if(!animal.isPet && action == 'pet') {
-				Materialize.toast('Come on, just kill the ' + animal.species + ' already. What are you, some kind of vegan?', 2000);
+				Materialize.toast('Come on, just kill the ' + animal.species + ' already. What are you, some kind of vegan?', 3000);
 				$('#stamp').text('INCORRECT').removeClass('hide correct incorrect').addClass('incorrect');
 				this.strikes++; 
 			} else if(!animal.isPet && action == 'kill') {
-				Materialize.toast('Looking forward to dinner, I\'m so glad we have ' + animal.species + 's so we don\'t have to eat something weird like plants!', 2000);
+				Materialize.toast('Looking forward to dinner, I\'m so glad we have ' + animal.species + 's so we don\'t have to eat something weird like plants!', 3000);
 				$('#stamp').text('CORRECT').removeClass('hide correct incorrect').addClass('correct');
 				this.score++;
 			}
